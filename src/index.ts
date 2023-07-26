@@ -32,7 +32,6 @@ app.get('/contacts/:id', async (req: Request, res: Response) => {
       const response = await axios.get(
         `https://api.hubspot.com/crm/v3/objects/contacts/${contactId}`,
         {
-        //   params: { hapikey: apiKey },
           headers: {
             Authorization: `Bearer ${apiKey}`
           }
