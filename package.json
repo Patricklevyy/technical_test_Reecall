@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@hubspot/api-client": "^9.0.1",
     "@types/axios": "^0.14.0",
     "@types/express": "^4.17.17",
     "axios": "^1.4.0",
