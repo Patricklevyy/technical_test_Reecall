@@ -22,3 +22,25 @@ app.get('/contacts', async (_req: Request, res: Response) => {
     res.status(500).json({ error: 'Error when retrieving contacts.'});
   }
 });
+
+// Récupération d'un contact spécifique par son ID
+app.get('/contacts/:id', async (req: Request, res: Response) => {
+    const contactId = req.params.id;
+    try {
+      const response = await axios.get(
+        `https://api.hubspot.com/crm/v3/objects/contacts/${contactId}`,
+        {
+          params: { hapikey: apiKey }
+        }
+      );
+      res.json(response.data);
+    } catch (error) {
+      res.status(500).json({ error: 'Error when retrieving contact by id.'});
+    }
+  });
+
+  const port = 3000;
+  app.listen(port, () => {
+    console.log(`App listening on port http://localhost:${port}`);
+  });
+
