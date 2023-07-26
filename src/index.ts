@@ -74,6 +74,22 @@ app.put('/contacts/:id', async (req: Request, res: Response) => {
   }
 });
 
+// Suppression d'un contact
+app.delete('/contacts/:id', async (req: Request, res: Response) => {
+  const contactId = req.params.id;
+  try {
+    const response = await axios.delete(
+      `https://api.hubspot.com/crm/v3/objects/contacts/${contactId}`,
+      {
+        params: { hapikey: apiKey }
+      }
+    );
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: 'Error while deleting contact.'});
+  }
+});
+
 const port = 3000;
 app.listen(port, () => {
   console.log(`App listening on port http://localhost:${port}`);
