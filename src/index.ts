@@ -35,9 +35,26 @@ app.get('/contacts/:id', async (req: Request, res: Response) => {
       );
       res.json(response.data);
     } catch (error) {
-      res.status(500).json({ error: 'Error when retrieving contact by id.'});
+      res.status(500).json({error: 'Error when retrieving contact by id.'});
     }
   });
+
+    // Création d'un nouveau contact
+    app.post('/contacts', async (req: Request, res: Response) => {
+        const newContact = req.body;
+        try {
+          const response = await axios.post(
+            'https://api.hubspot.com/crm/v3/objects/contacts',
+            newContact,
+            {
+              params: { hapikey: apiKey }
+            }
+          );
+          res.json(response.data);
+        } catch (error) {
+          res.status(500).json({error: 'Error during contact creation.'});
+        }
+      });
 
   const port = 3000;
   app.listen(port, () => {
