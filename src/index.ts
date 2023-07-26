@@ -45,42 +45,59 @@ app.get('/contacts/:id', async (req: Request, res: Response) => {
 
 // Création d'un nouveau contact
 app.post('/contacts', async (req: Request, res: Response) => {
-    const newContact = req.body;
-    try {
+  const newContact = {
+      properties: {
+        firstname: req.body.properties.firstname,
+        lastname: req.body.properties.lastname,
+        email: req.body.properties.email,
+        phone: req.body.properties.phone
+      }
+  };
+  try {
       const response = await axios.post(
-        'https://api.hubspot.com/crm/v3/objects/contacts',
-        newContact,
-        {
-          headers: {
-            Authorization: `Bearer ${apiKey}`
+          'https://api.hubspot.com/crm/v3/objects/contacts',
+          newContact,
+          {
+              headers: {
+                  Authorization: `Bearer ${apiKey}`
+              }
           }
-        }
       );
       res.json(response.data);
-    } catch (error) {
+  } catch (error) {
       res.status(500).json({ error: 'Error during contact creation.' });
-    }
+  }
 });
 
 // Mise à jour d'un contact existant
 app.put('/contacts/:id', async (req: Request, res: Response) => {
-    const contactId = req.params.id;
-    const updatedContact = req.body;
-    try {
+  const contactId = req.params.id;
+  const updatedContact = {
+    properties: {
+      firstname: req.body.properties.firstname,
+      lastname: req.body.properties.lastname,
+      email: req.body.properties.email,
+      phone: req.body.properties.phone
+    }
+  };
+  try {
       const response = await axios.put(
-        `https://api.hubspot.com/crm/v3/objects/contacts/${contactId}`,
-        updatedContact,
-        {
-          headers: {
-            Authorization: `Bearer ${apiKey}`
+          `https://api.hubspot.com/crm/v3/objects/contacts/${contactId}`,
+          updatedContact,
+          {
+              headers: {
+                  Authorization: `Bearer ${apiKey}`
+              }
           }
-        }
       );
       res.json(response.data);
-    } catch (error) {
+  } catch (error) {
+      console.log("error");
       res.status(500).json({ error: 'Error while updating contact.' });
-    }
+  }
 });
+
+
 
 // Suppression d'un contact
 app.delete('/contacts/:id', async (req: Request, res: Response) => {
@@ -102,5 +119,5 @@ app.delete('/contacts/:id', async (req: Request, res: Response) => {
 
 const port = 3000;
 app.listen(port, () => {
-  console.log(`App listening on port http://localhost:${port}`);
+  console.log(`App listening on the port http://localhost:${port}`);
 });
