@@ -51,7 +51,6 @@ app.post('/contacts', async (req: Request, res: Response) => {
         'https://api.hubspot.com/crm/v3/objects/contacts',
         newContact,
         {
-          params: { hapikey: apiKey },
           headers: {
             Authorization: `Bearer ${apiKey}`
           }
@@ -72,7 +71,6 @@ app.put('/contacts/:id', async (req: Request, res: Response) => {
         `https://api.hubspot.com/crm/v3/objects/contacts/${contactId}`,
         updatedContact,
         {
-          params: { hapikey: apiKey },
           headers: {
             Authorization: `Bearer ${apiKey}`
           }
@@ -91,7 +89,6 @@ app.delete('/contacts/:id', async (req: Request, res: Response) => {
       const response = await axios.delete(
         `https://api.hubspot.com/crm/v3/objects/contacts/${contactId}`,
         {
-          params: { hapikey: apiKey },
           headers: {
             Authorization: `Bearer ${apiKey}`
           }
