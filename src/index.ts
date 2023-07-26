@@ -56,6 +56,24 @@ app.post('/contacts', async (req: Request, res: Response) => {
     }
 });
 
+// Mise à jour d'un contact existant
+app.put('/contacts/:id', async (req: Request, res: Response) => {
+  const contactId = req.params.id;
+  const updatedContact = req.body;
+  try {
+    const response = await axios.put(
+      `https://api.hubspot.com/crm/v3/objects/contacts/${contactId}`,
+      updatedContact,
+      {
+        params: { hapikey: apiKey }
+      }
+    );
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: 'Error while updating contact.'});
+  }
+});
+
 const port = 3000;
 app.listen(port, () => {
   console.log(`App listening on port http://localhost:${port}`);
