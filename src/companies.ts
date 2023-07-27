@@ -1,4 +1,4 @@
-// Importez express et axios
+// Import d'express et d'axios
 import express, { Request, Response } from 'express';
 import axios from 'axios';
 
@@ -8,7 +8,7 @@ const apiKey = 'pat-na1-e9a27d01-43f8-4e0c-b158-192a5d0cf71c';
 // Middleware pour parser les données JSON
 app.use(express.json());
 
-// Endpoint pour récupérer la liste des compagnies
+// Récuparation de la liste des compagnies
 app.get('/', async (req: Request, res: Response) => {
   try {
     const response = await axios.get(`https://api.hubspot.com/crm/v3/objects/companies`, {
@@ -19,11 +19,11 @@ app.get('/', async (req: Request, res: Response) => {
 
     res.json(response.data);
   } catch (error) {
-    res.status(500).json({ error: "Une erreur est survenue lors de la récupération des compagnies." });
+    res.status(500).json({ error: "An error occurred while retrieving the companies." });
   }
 });
 
-// Endpoint pour récupérer une compagnie par son ID
+// Récupération d'une compagnie par son ID
 app.get('/:id', async (req: Request, res: Response) => {
   const companyId = req.params.id;
   try {
@@ -35,15 +35,29 @@ app.get('/:id', async (req: Request, res: Response) => {
 
     res.json(response.data);
   } catch (error) {
-    res.status(500).json({ error: "Une erreur est survenue lors de la récupération de la compagnie par ID." });
+    res.status(500).json({ error: "An error occurred when retrieving the company by ID." });
   }
 });
 
-// Endpoint pour créer une nouvelle compagnie
+// Création d'une nouvelle compagnie
 app.post('/', async (req: Request, res: Response) => {
-  const newCompanyData = req.body;
+  const newCompany = {
+      properties: {
+        name: req.body.properties.name,
+        email: req.body.properties.email,
+        phone: req.body.properties.phone,
+        domain: req.body.properties.domain,
+        address: {
+          street: req.body.properties.street,
+          city: req.body.properties.city,
+          state: req.body.properties.state,
+          postalCode: req.body.properties.postalCode,
+          country: req.body.properties.country,
+        },
+      }
+  }
   try {
-    const response = await axios.post(`https://api.hubspot.com/crm/v3/objects/companies`, newCompanyData, {
+    const response = await axios.post(`https://api.hubspot.com/crm/v3/objects/companies`, newCompany, {
       headers: {
         Authorization: `Bearer ${apiKey}`,
       },
@@ -51,11 +65,11 @@ app.post('/', async (req: Request, res: Response) => {
 
     res.json(response.data);
   } catch (error) {
-    res.status(500).json({ error: "Une erreur est survenue lors de la création d'une nouvelle compagnie." });
+    res.status(500).json({ error: "An error occurred when creating a new company." });
   }
 });
 
-// Endpoint pour mettre à jour une compagnie existante
+// Mise à jour une compagnie existante
 app.put('/:id', async (req: Request, res: Response) => {
   const companyId = req.params.id;
   const updatedCompanyData = req.body;
@@ -68,11 +82,11 @@ app.put('/:id', async (req: Request, res: Response) => {
 
     res.json(response.data);
   } catch (error) {
-    res.status(500).json({ error: "Une erreur est survenue lors de la mise à jour de la compagnie." });
+    res.status(500).json({ error: "An error occurred while updating the company." });
   }
 });
 
-// Endpoint pour supprimer une compagnie
+// Suppression d'une compagnie
 app.delete('/:id', async (req: Request, res: Response) => {
   const companyId = req.params.id;
   try {
@@ -84,7 +98,7 @@ app.delete('/:id', async (req: Request, res: Response) => {
 
     res.json(response.data);
   } catch (error) {
-    res.status(500).json({ error: "Une erreur est survenue lors de la suppression de la compagnie." });
+    res.status(500).json({ error: "An error occurred when deleting the company." });
   }
 });
 
