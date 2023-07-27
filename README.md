@@ -1,54 +1,55 @@
-# technical_test_Reecall
+# Technical_test_Reecall
 
-Ce projet est une API développée en TypeScript permettant d'interagir avec les contacts, les tickets, les compagnies et les transactions d'un compte HubSpot. L'API expose divers endpoints pour réaliser les différentes opérations.
+This project is an API developed in TypeScript for interacting with contacts, tickets, companies and transactions in a HubSpot account. The API exposes various endpoints to perform the various operations.
+## Implemented features
+Here's a list of the features I have implemented in this project:
 
-## Fonctionnalités Implémentées
+1. Contact management :
+   - Contact list retrieval
+   - Retrieve a specific contact by ID
+   - Create a new contact
+   - Update an existing contact
+   - Delete a contact
 
-Voici la liste des fonctionnalités que j'ai implémentées dans mon projet :
+2. Company management :
+   - Company list retrieval
+   - Retrieve a specific company by its ID
+   - Create a new company
+   - Update an existing company
+   - Delete a company
 
-1. Gestion des contacts :
-   - Récupération de la liste des contacts
-   - Récupération d'un contact spécifique par son ID
-   - Création d'un nouveau contact
-   - Mise à jour d'un contact existant
-   - Suppression d'un contact
+3. Ticket management :
+   - Ticket list retrieval
+   - Retrieve a specific ticket by its ID
+   - Create a new ticket
+   - Update an existing ticket
+   - Delete a ticket
 
-2. Gestion des compagnies :
-   - Récupération de la liste des compagnies
-   - Récupération d'une compagnie spécifique par son ID
-   - Création d'une nouvelle compagnie
-   - Mise à jour d'une compagnie existante
-   - Suppression d'une compagnie
+4. Transaction management :
+   - Transaction list retrieval
+   - Retrieve a specific transaction by its ID
+   - Create a new transaction
+   - Update an existing transaction
+   - Delete a transaction
+## Architecture of the Project
+The project is divided into several parts.
+- `src/contacts`: Contains all contact functionalities.
+- `src/companies` : Contains all functionalities for companies.
+- `src/tickets` : Contains all functionalities for tickets.
+- `src/transactions` : Contains all transaction functionalities.
+- `tsconfig.json`: This is the essential configuration file for TypeScript projects.
+- `package.json`: File used to define project metadata and dependencies, as well as to describe associated runtime scripts.
+- `package-lock.json:` Automatically generated file which records the exact versions of installed dependencies to ensure reproducible installations.
+- `node_modules`: Directory where external dependencies downloaded from the Node.js package manager (NPM) are stored for use in the project.
+## Installation and operation
 
-3. Gestion des tickets :
-   - Récupération de la liste des tickets
-   - Récupération d'un ticket spécifique par son ID
-   - Création d'un nouveau ticket
-   - Mise à jour d'un ticket existant
-   - Suppression d'un ticket
+1. Clone the repository from GitHub :
 
-4. Gestion des transactions :
-   - Récupération de la liste des transactions
-   - Récupération d'une transaction spécifique par son ID
-   - Création d'une nouvelle transaction
-   - Mise à jour d'une transaction existante
-   - Suppression d'une transaction
-## Architecture du Projet
-Le projet est divisé en plusieurs parties.
-- `src/contacts` : Contient toutes les fonctionnalités pour les contacts.
-- `src/companies` : Contient toutes les fonctionnalités pour les compagnies.
-- `src/tickets` : Contient toutes les fonctionnalités pour les tickets.
-- `src/transactions` : Contient toutes les fonctionnalités pour les transactions.
-- `tsconfig.json`: Qui est le fichier de configuration essentiel pour les projets TypeScript.
-- `package.json`: Fichier utilisé pour définir les métadonnées et les dépendances du projet, ainsi que pour décrire les scripts d'exécution associés.
-- `package-lock.json:` Fichier généré automatiquement qui enregistre les versions exactes des dépendances installées pour assurer une reproductibilité des installations.
-- `node_modules`: Répertoire où sont stockées les dépendances externes téléchargées à partir du gestionnaire de paquets Node.js (NPM) pour être utilisées dans le projet.
-## Installation et Utilisation
+    git clone git@github.com:Patricklevyy/Technical_test_Reecall.git
 
-1. Clonez le référentiel depuis GitHub :
-    git clone git@github.com:Patricklevyy/technical_test_Reecall.git
-2. Assurez-vous d'avoir Node.js et NPM installés sur votre système.
-3. Installez les dépendances du projet en exécutant la commande suivante :
+2. Make sure you have Node.js and NPM installed on your system
+
+3. Install the project's dependencies by running the following command:
 
     - npm install axios
     - npm init -y
@@ -58,10 +59,10 @@ Le projet est divisé en plusieurs parties.
     - npm install dotenv --save-dev
 
 
-4. Configurez la clé API HubSpot dans le fichier .env
+4. Configure your HubSpot API key in the .env file
 
-5. Lancez l'API en exécutant la commande suivante :
+5. Launch the API with the following command:
 
     npx ts-node src/index.ts
 
-6. L'API sera accessible à l'adresse : http://localhost:3000
+6. The API can be accessed at: http://localhost:3000 .
