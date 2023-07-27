@@ -50,7 +50,6 @@ app.post('/', async (req: Request, res: Response) => {
         address: {
           street: req.body.properties.street,
           city: req.body.properties.city,
-          state: req.body.properties.state,
           postalCode: req.body.properties.postalCode,
           country: req.body.properties.country,
         },
