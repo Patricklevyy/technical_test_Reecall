@@ -71,7 +71,20 @@ app.post('/', async (req: Request, res: Response) => {
 // Mise à jour une compagnie existante
 app.put('/:id', async (req: Request, res: Response) => {
   const companyId = req.params.id;
-  const updatedCompanyData = req.body;
+  const updatedCompanyData = {
+    properties: {
+      name: req.body.properties.name,
+      email: req.body.properties.email,
+      phone: req.body.properties.phone,
+      domain: req.body.properties.domain,
+      address: {
+        street: req.body.properties.street,
+        city: req.body.properties.city,
+        postalCode: req.body.properties.postalCode,
+        country: req.body.properties.country,
+      },
+    }
+  }
   try {
     const response = await axios.put(`https://api.hubspot.com/crm/v3/objects/companies/${companyId}`, updatedCompanyData, {
       headers: {
