@@ -67,7 +67,16 @@ app.post('/', async (req: Request, res: Response) => {
 // Mise à jour d'un ticket existant
 app.put('/:id', async (req: Request, res: Response) => {
   const ticketId = req.params.id;
-  const updatedTicketData = req.body;
+  const updatedTicketData = {
+        properties: {
+          title: req.body.properties.title,
+          subject: req.body.properties.subject,
+          priority: req.body.properties.priority,
+          category: req.body.properties.category,
+          content: req.body.properties.content,
+          requester: req.body.properties.requester
+        }
+    }
   try {
     const response = await axios.put(`https://api.hubspot.com/crm/v3/objects/tickets/${ticketId}`, updatedTicketData, {
       headers: {
