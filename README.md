@@ -45,11 +45,12 @@ The project is divided into several parts.
 
 1. Clone the repository from GitHub :
 
-    git clone git@github.com:Patricklevyy/Technical_test_Reecall.git
+         git clone git@github.com:Patricklevyy/Technical_test_Reecall.git
+   
 
-2. Make sure you have Node.js and NPM installed on your system
+3. Make sure you have Node.js and NPM installed on your system
 
-3. Install the project's dependencies by running the following command:
+4. Install the project's dependencies by running the following command:
 
     - npm install axios
     - npm init -y
@@ -59,10 +60,10 @@ The project is divided into several parts.
     - npm install dotenv --save-dev
 
 
-4. Configure your HubSpot API key in the .env file
+5. Configure your HubSpot API key in the .env file
 
-5. Launch the API with the following command:
+6. Launch the API with the following command:
 
     npx ts-node src/index.ts
 
-6. The API can be accessed at: http://localhost:3000 .
+7. The API can be accessed at: http://localhost:3000 .
